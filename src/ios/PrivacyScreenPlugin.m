@@ -5,6 +5,7 @@
  * MIT Licensed
  */
 #import "PrivacyScreenPlugin.h"
+@import Cordova.CDVScreenOrientationDelegate;
 
 static UIImageView *imageView;
 
