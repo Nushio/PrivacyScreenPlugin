@@ -8,11 +8,13 @@
 @import Cordova.CDVScreenOrientationDelegate;
 
 static UIImageView *imageView;
+static BOOL enable
 
 @implementation PrivacyScreenPlugin
 
 - (void)pluginInitialize
 {
+  enable=true;
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAppDidBecomeActive:)
                                                name:UIApplicationDidBecomeActiveNotification object:nil];
 
@@ -31,21 +33,23 @@ static UIImageView *imageView;
 
 - (void)onAppWillResignActive:(UIApplication *)application
 {
-  CDVViewController *vc = (CDVViewController*)self.viewController;
-  NSString *imgName = [self getImageName:self.viewController.interfaceOrientation delegate:(id<CDVScreenOrientationDelegate>)vc device:[self getCurrentDevice]];
-  UIImage *splash = [UIImage imageNamed:imgName];
-  if (splash == NULL) {
-    imageView = NULL;
-    self.viewController.view.window.hidden = YES;
-  } else {
-    imageView = [[UIImageView alloc]initWithFrame:[self.viewController.view bounds]];
-    [imageView setImage:splash];
-    
-    #ifdef __CORDOVA_4_0_0
-        [[UIApplication sharedApplication].keyWindow addSubview:imageView];
-    #else
-        [self.viewController.view addSubview:imageView];
-    #endif
+  if(enable){
+      CDVViewController *vc = (CDVViewController*)self.viewController;
+      NSString *imgName = [self getImageName:self.viewController.interfaceOrientation delegate:(id<CDVScreenOrientationDelegate>)vc device:[self getCurrentDevice]];
+      UIImage *splash = [UIImage imageNamed:imgName];
+      if (splash == NULL) {
+        imageView = NULL;
+        self.viewController.view.window.hidden = YES;
+      } else {
+        imageView = [[UIImageView alloc]initWithFrame:[self.viewController.view bounds]];
+        [imageView setImage:splash];
+        
+        #ifdef __CORDOVA_4_0_0
+            [[UIApplication sharedApplication].keyWindow addSubview:imageView];
+        #else
+            [self.viewController.view addSubview:imageView];
+        #endif
+      }
   }
 }
 
