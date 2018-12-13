@@ -9,7 +9,7 @@
 function PrivacyScreenPlugin() {
 }
 
-PrivacyScreenPlugin.prototype.show = function (successCallback, errorCallback) {
+PrivacyScreenPlugin.prototype.enable = function (successCallback, errorCallback) {
   cordova.exec(
     successCallback,
     errorCallback,
@@ -19,7 +19,7 @@ PrivacyScreenPlugin.prototype.show = function (successCallback, errorCallback) {
   );
 };
 
-PrivacyScreenPlugin.prototype.isAvailable = function (successCallback, errorCallback) {
+PrivacyScreenPlugin.prototype.disable = function (successCallback, errorCallback) {
   cordova.exec(
     successCallback,
     errorCallback,
