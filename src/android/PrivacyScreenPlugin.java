@@ -6,21 +6,16 @@
  */
 package org.devgeeks.privacyscreen;
 
-import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaInterface;
-import org.apache.cordova.CordovaWebView;
-
 import android.app.Activity;
-import android.view.Window;
 import android.view.WindowManager;
 
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaInterface;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaWebView;
+import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.content.Context;
-import android.os.Bundle;
 
 /**
  * This class sets the FLAG_SECURE flag on the window to make the app
@@ -45,40 +40,40 @@ public class PrivacyScreenPlugin extends CordovaPlugin {
       if (ACTION_ENABLE.equals(action)) {
           cordova.getActivity().runOnUiThread(new Runnable() {
               public void run() {
-                  try{
-                      // Allow to make screenshots removing the FLAG_SECURE
-                      if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
-                          cordova.getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
-                      }
-                      
-                      PluginResult result = new PluginResult(PluginResult.Status.OK, "");
-                      result.setKeepCallback(true);
-                      callbacks.sendPluginResult(result);
-                  }catch(Exception e){
-                      PluginResult result = new PluginResult(PluginResult.Status.ERROR, e.getMessage());
-                      result.setKeepCallback(true);
-                      callbacks.sendPluginResult(result);
+                try{
+                  // Disable the creation of screenshots adding the FLAG_SECURE to the window
+                  if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+                    cordova.getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
+                      WindowManager.LayoutParams.FLAG_SECURE);
                   }
+
+                  PluginResult result = new PluginResult(PluginResult.Status.OK, "");
+                  result.setKeepCallback(true);
+                  callbacks.sendPluginResult(result);
+                }catch(Exception e){
+                  PluginResult result = new PluginResult(PluginResult.Status.ERROR, e.getMessage());
+                  result.setKeepCallback(true);
+                  callbacks.sendPluginResult(result);
+                }
               }
           });
       }else if(ACTION_DISABLE.equals(action)){
           cordova.getActivity().runOnUiThread(new Runnable() {
               public void run() {
-                  try{
-                      // Disable the creation of screenshots adding the FLAG_SECURE to the window
-                      if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
-                          cordova.getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-                                                                     WindowManager.LayoutParams.FLAG_SECURE);
-                      }
-
-                      PluginResult result = new PluginResult(PluginResult.Status.OK, "");
-                      result.setKeepCallback(true);
-                      callbacks.sendPluginResult(result);
-                  }catch(Exception e){
-                      PluginResult result = new PluginResult(PluginResult.Status.ERROR, e.getMessage());
-                      result.setKeepCallback(true);
-                      callbacks.sendPluginResult(result);
+                try{
+                  // Allow to make screenshots removing the FLAG_SECURE
+                  if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+                    cordova.getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
                   }
+
+                  PluginResult result = new PluginResult(PluginResult.Status.OK, "");
+                  result.setKeepCallback(true);
+                  callbacks.sendPluginResult(result);
+                }catch(Exception e){
+                  PluginResult result = new PluginResult(PluginResult.Status.ERROR, e.getMessage());
+                  result.setKeepCallback(true);
+                  callbacks.sendPluginResult(result);
+                }
               }
           });
       }
