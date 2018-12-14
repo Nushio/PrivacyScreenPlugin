@@ -8,7 +8,7 @@
 @import Cordova.CDVScreenOrientationDelegate;
 
 static UIImageView *imageView;
-static BOOL enable
+static BOOL enable;
 
 @implementation PrivacyScreenPlugin
 
