@@ -22,6 +22,28 @@ static BOOL enable;
                                                name:UIApplicationWillResignActiveNotification object:nil];
 }
 
+- (void)enable:(CDVInvokedUrlCommand*)command
+{
+    enable = true;
+    CDVPluginResult* pluginResult =
+    [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                     messageAsString:@"SUCCESS"];
+    
+    [self.commandDelegate sendPluginResult:pluginResult
+                                callbackId:command.callbackId];
+}
+
+- (void)disable:(CDVInvokedUrlCommand*)command
+{
+    enable = false;
+    CDVPluginResult* pluginResult =
+    [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                     messageAsString:@"SUCCESS"];
+    
+    [self.commandDelegate sendPluginResult:pluginResult
+                                callbackId:command.callbackId];
+}
+
 - (void)onAppDidBecomeActive:(UIApplication *)application
 {
   if (imageView == NULL) {
