@@ -57,8 +57,8 @@ static BOOL enable;
 {
   if(enable){
       CDVViewController *vc = (CDVViewController*)self.viewController;
-      NSString *imgName = [self getImageName:self.viewController.interfaceOrientation delegate:(id<CDVScreenOrientationDelegate>)vc device:[self getCurrentDevice]];
-      UIImage *splash = [UIImage imageNamed:imgName];
+    //  NSString *imgName = [self getImageName:self.viewController.interfaceOrientation delegate:(id<CDVScreenOrientationDelegate>)vc device:[self getCurrentDevice]];
+      UIImage *splash = [UIImage imageNamed:@"Splash"];
       if (splash == NULL) {
         imageView = NULL;
         self.viewController.view.window.hidden = YES;
