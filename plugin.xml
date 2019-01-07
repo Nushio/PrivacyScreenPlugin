@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-privacyscreen" version="0.3.1">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-privacyscreen" version="1.0.0">
 
 	<name>PrivacyScreenPlugin</name>
 	<description>Secures your app from displaying a screenshot in task switchers under Android and iOS. Keeps sensitive information private.</description>
 	<license>MIT</license>
 
   <js-module src="www/PrivacyScreenPlugin.js" name="PrivacyScreenPlugin">
-      <clobbers target="window.plugins.privacyscreenplugin" />
+      <clobbers target="cordova.plugins.PrivacyScreenPlugin" />
   </js-module>
 
 	<platform name="android">

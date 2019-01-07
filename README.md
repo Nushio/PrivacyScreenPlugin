@@ -15,15 +15,34 @@ Installation
 
 For Cordova 3.x.x:
 
-1. To add this plugin just type: `cordova plugin add cordova-plugin-privacyscreen` or `phonegap local plugin add cordova-plugin-privacyscreen`
-2. To remove this plugin type: `cordova plugin remove cordova-plugin-privacyscreen` or `phonegap local plugin remove cordova-plugin-privacyscreen`
+1. To add this plugin just type: `cordova plugin add cordova-plugin-privacyscreen-toggled` or `phonegap local plugin add cordova-plugin-privacyscreen-toggled`
+2. To remove this plugin type: `cordova plugin remove cordova-plugin-privacyscreen-toggled` or `phonegap local plugin remove cordova-plugin-privacyscreen-toggled`
 
 Usage:
 ------
 
-This plugin exposes no interface, it simply sets your app to be private. You don't need to do anything except install the plugin.
+This plugin is a fork of the original plugin developed by Tommy-Carlos Williams. Unlike the original plugin, by default, this plugin does not disable screenshots by default. You'll have to enable (and disable, if you prefer) the functionality. 
 
-Test this plugin on a real device because the iOS simulator (7.1 at least) does a poor job hiding your app.
+
+- For enabling use `cordova.plugins.PrivacyScreenPlugin.enable` 
+
+```js
+cordova.plugins.PrivacyScreenPlugin.enable(function (res) {
+  console.log(res); // It worked
+}, function (error) {
+  console.log(error); // It did not work
+});
+```
+
+- For disabling use `cordova.plugins.PrivacyScreenPlugin.disable`.
+
+```js
+cordova.plugins.PrivacyScreenPlugin.disable(function (res) {
+  console.log(res); // It worked
+}, function (error) {
+  console.log(error); // It did not work
+});
+```
 
 ## License
 

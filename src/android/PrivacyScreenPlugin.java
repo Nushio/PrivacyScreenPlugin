@@ -27,13 +27,6 @@ public class PrivacyScreenPlugin extends CordovaPlugin {
   private static final String ACTION_DISABLE = "disable";
 
   @Override
-  public void initialize(CordovaInterface cordova, CordovaWebView webView) {
-    super.initialize(cordova, webView);
-    Activity activity = this.cordova.getActivity();
-    activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
-  }
-
-  @Override
   public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
       final CallbackContext callbacks = callbackContext;
 
